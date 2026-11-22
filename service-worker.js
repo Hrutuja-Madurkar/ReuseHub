@@ -8,8 +8,8 @@ const FILES_TO_CACHE = [
     "./style.css",
     "./script.js",
     "./manifest.json",
-    "./icons/reusehub-icon-192.png",
-    "./icons/reusehub-icon-512.png"
+    "./Icons/reusehub-icon-192.png",
+"./Icons/reusehub-icon-512.png"
 ];
 
 // Install and cache app files
