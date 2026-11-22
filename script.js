@@ -8,6 +8,20 @@ navItems.forEach(item => {
 
         // Get the screen name
         const page = item.dataset.page;
+        // Reset Browse to All when opened from bottom navigation
+if (page === "browse") {
+    currentCategory = "all";
+
+    filterButtons.forEach(filter => filter.classList.remove("active"));
+
+    const allFilter = document.querySelector('.filter[data-category="all"]');
+    if (allFilter) allFilter.classList.add("active");
+
+    resourceCards.forEach(card => card.style.display = "flex");
+
+    checkNoResults();
+}
+        history.pushState({ page: page }, "", "#" + page);
 
         // Remove active from all navigation items
         navItems.forEach(nav => nav.classList.remove("active"));
@@ -22,6 +36,28 @@ navItems.forEach(item => {
         document.getElementById(page + "-screen").classList.add("active");
 
     });
+});
+
+// Android Back Button - Return to Home
+window.addEventListener("popstate", () => {
+
+    const activeScreen = document.querySelector(".screen.active");
+
+    if (activeScreen && activeScreen.id !== "home-screen") {
+
+        navItems.forEach(nav => nav.classList.remove("active"));
+        screens.forEach(screen => screen.classList.remove("active"));
+
+        const homeScreen = document.getElementById("home-screen");
+        homeScreen.classList.add("active");
+
+        const homeNav = document.querySelector('[data-page="home"]');
+        if (homeNav) homeNav.classList.add("active");
+
+    }
+
+    history.pushState({ page: "home" }, "", "#home");
+
 });
 // ReuseHub - Browse Filters
 
