@@ -1,0 +1,1577 @@
+/* =========================
+   ReuseHub - Main Styling
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EDF6FA;
+    color: #374151;
+}
+
+.app {
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 24px 20px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Header */
+
+.header {
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #315D7D;
+    margin-bottom: 6px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #728C9B;
+}
+
+/* Search bar */
+
+.search-box {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #F4F8FB;
+    border: 1px solid #DCECF4;
+    border-radius: 14px;
+    padding: 0 14px;
+}
+
+.search-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    color: #374151;
+}
+
+.search-box input:focus {
+    border-color: #6F9FBE;
+}
+
+/* Section headings */
+
+section h2 {
+    font-size: 18px;
+    color: #315D7D;
+    margin-bottom: 14px;
+}
+
+/* Categories */
+
+.categories {
+    margin-bottom: 30px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.category {
+    background-color: #B7D3E6;
+    border-radius: 16px;
+    min-height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #315D7D;
+}
+
+/* Featured resource */
+
+.featured {
+    margin-bottom: 24px;
+}
+
+.resource-card {
+    background-color: #B7D3E6;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Small book icon card */
+.resource-icon {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    background-color: #DCECF4;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+/* Resource details */
+.resource-details {
+    flex: 1;
+}
+
+.resource-card h3 {
+    font-size: 17px;
+    color: #315D7D;
+    margin-bottom: 8px;
+}
+
+.resource-card p {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 16px !important;
+    font-weight: bold;
+    color: #47778C;
+}
+
+.status {
+    color: #728C9B;
+}
+
+/* Bottom navigation */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background-color: #DCECF4;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 8px;
+    border-top: 1px solid #C7DDEB;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    color: #728C9B;
+    cursor: pointer;
+}
+
+.nav-item span {
+    font-size: 11px;
+}
+
+.nav-item.active {
+    color: #315D7D;
+    font-weight: bold;
+}
+
+/* Small screens */
+
+@media (max-width: 360px) {
+    .app {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .category {
+        min-height: 100px;
+    }
+}
+/* Screen switching */
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding-bottom: 100px;
+}
+/* Category hover effect */
+
+.category {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(49, 93, 125, 0.12);
+}
+/* Featured Resource polish */
+
+.resource-card {
+    box-shadow: 0 4px 12px rgba(49, 93, 125, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(49, 93, 125, 0.14);
+}
+
+.resource-icon {
+    transition: transform 0.2s ease;
+}
+
+.resource-card:hover .resource-icon {
+    transform: scale(1.04);
+}
+/* Global button polish */
+
+button {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover {
+    box-shadow: 0 3px 10px rgba(49, 93, 125, 0.12);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+/* Search bar focus polish */
+
+.search-box {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box:focus-within {
+    border-color: #6F9FBE;
+    box-shadow: 0 0 0 3px rgba(111, 159, 190, 0.15);
+}
+/* Bottom navigation polish */
+
+.bottom-nav {
+    box-shadow: 0 -4px 16px rgba(49, 93, 125, 0.06);
+    backdrop-filter: blur(12px);
+}
+
+.nav-item {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item:hover {
+    transform: translateY(-2px);
+}
+
+.nav-item.active {
+    transform: translateY(-1px);
+}
+/* Browse resource card polish */
+
+.browse-card {
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(49, 93, 125, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.browse-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(49, 93, 125, 0.12);
+}
+/* Browse Screen */
+
+.browse-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    margin-bottom: 22px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.browse-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.filter {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 16px;
+    background-color: #DCECF4;
+    color: #315D7D;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.filter.active {
+    background-color: #6F9FBE;
+    color: white;
+}
+
+.browse-resources {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.browse-card {
+    background-color: #B7D3E6;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.browse-book-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background-color: #DCECF4;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.browse-details {
+    flex: 1;
+}
+
+.browse-details h3 {
+    font-size: 15px;
+    color: #315D7D;
+    margin-bottom: 7px;
+}
+
+.browse-details p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+/* My Items Screen */
+
+.my-items-tabs {
+    display: flex;
+    background-color: #DCECF4;
+    border-radius: 14px;
+    padding: 5px;
+    gap: 4px;
+    margin-bottom: 24px;
+}
+
+.tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 5px;
+    border-radius: 10px;
+    color: #728C9B;
+    font-size: 13px;
+}
+
+.tab.active {
+    background-color: #F4F8FB;
+    color: #315D7D;
+    font-weight: bold;
+}
+
+.add-item-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background-color: #6F9FBE;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* My Listing Card */
+.my-listing-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 14px;
+    background-color: #B7D3E6;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+.my-listing-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background-color: #DCECF4;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.my-listing-details {
+    flex: 1;
+}
+
+.my-listing-details h3 {
+    font-size: 16px;
+    color: #315D7D;
+    margin-bottom: 7px;
+}
+
+.my-listing-details p {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+/* My Items Tab Content */
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 30px 15px;
+    color: #728C9B;
+    font-size: 14px;
+    background-color: #F4F8FB;
+    border-radius: 14px;
+}
+/* Add Item Form */
+
+.add-item-form {
+    display: none !important;
+    background-color: #B7D3E6;
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.add-item-form h2 {
+    color: #315D7D;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.add-item-form input,
+.add-item-form select,
+.add-item-form textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+    border: 1px solid #DCECF4;
+    border-radius: 12px;
+    background-color: #F4F8FB;
+    color: #374151;
+    font-size: 14px;
+    outline: none;
+}
+
+.add-item-form textarea {
+    resize: vertical;
+    min-height: 90px;
+    font-family: Arial, sans-serif;
+}
+.add-item-form.show {
+    display: block !important;
+}
+
+.submit-item-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background-color: #6F9FBE;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+/* ReuseHub - No Results Message */
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 30px 20px;
+    color: #315D7D;
+}
+
+.no-results h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.no-results p {
+    font-size: 13px;
+    color: #728C9B;
+}
+/* ReuseHub - Save Button */
+
+.save-btn {
+    background-color: #DCECF4;
+    color: #315D7D;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-left: 10px;
+    width: fit-content;
+}
+
+.save-btn:hover {
+    background-color: #6F9FBE;
+    color: white;
+}
+/* ReuseHub - Resource Details */
+
+#details-back-btn {
+    background-color: #DCECF4;
+    color: #315D7D;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.resource-detail-card {
+    background-color: #B7D3E6;
+    border-radius: 20px;
+    padding: 22px;
+    text-align: center;
+}
+
+.resource-detail-icon {
+    width: 90px;
+    height: 90px;
+    background-color: #DCECF4;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    margin: 0 auto 18px;
+}
+
+.resource-detail-card h2 {
+    color: #315D7D;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.resource-detail-card .price {
+    color: #47778C;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.resource-detail-card p {
+    color: #374151;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.resource-description {
+    background-color: #F4F8FB;
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.resource-description h3 {
+    color: #315D7D;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.resource-description p {
+    color: #728C9B;
+    line-height: 1.6;
+}
+/* ReuseHub - Contact Seller Button */
+
+.contact-seller-btn {
+    width: 100%;
+    background-color: #6F9FBE;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.contact-seller-btn:hover {
+    background-color: #5D8EAD;
+    transform: translateY(-2px);
+}
+/* ReuseHub - Delete Listing Button */
+
+.delete-listing-btn {
+    background-color: #F4F8FB;
+    color: #C05C5C;
+    border: 1px solid #D9A6A6;
+    border-radius: 10px;
+    padding: 9px 14px;
+   margin-top: 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-listing-btn:hover {
+    background-color: #F3DEDE;
+    transform: translateY(-1px);
+}
+/* ReuseHub - Edit Listing Button */
+
+.edit-listing-btn {
+    background-color: #DCECF4;
+    color: #315D7D;
+    border: 1px solid #9BBBD2;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-listing-btn:hover {
+    background-color: #C5DDEB;
+    transform: translateY(-1px);
+}
+
+.listing-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    flex-basis: 100%;
+}
+
+.listing-actions button {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    text-align: center;
+}
+/* ReuseHub - Borrow Request Button */
+
+.borrow-request-btn {
+    width: 100%;
+    background-color: #DCECF4;
+    color: #315D7D;
+    border: 1px solid #9BBBD2;
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.borrow-request-btn:hover {
+    background-color: #C5DDEB;
+    transform: translateY(-2px);
+}
+/* ReuseHub - Cancel Borrow Request */
+
+.cancel-request-btn {
+    background-color: #F4F8FB;
+    color: #C05C5C;
+    border: 1px solid #D9A6A6;
+    border-radius: 10px;
+    padding: 9px 14px;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cancel-request-btn:hover {
+    background-color: #F3DEDE;
+    transform: translateY(-1px);
+}
+/* ReuseHub - Edit Profile Form */
+
+.edit-profile-form {
+    display: none;
+    background-color: #B7D3E6;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.edit-profile-form.show {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.edit-profile-form h3 {
+    color: #315D7D;
+    margin: 0 0 5px;
+}
+
+.edit-profile-form input {
+    background-color: #F4F8FB;
+    border: 1px solid #C5DDEB;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+}
+
+.edit-profile-form button {
+    background-color: #6F9FBE;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* ReuseHub - Profile Screen */
+
+.profile-info {
+    background-color: #B7D3E6;
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.profile-avatar {
+    width: 85px;
+    height: 85px;
+    background-color: #F4F8FB;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    margin: 0 auto 12px;
+}
+
+.profile-info h2 {
+    color: #315D7D;
+    margin: 8px 0;
+}
+
+.profile-info p {
+    color: #728C9B;
+    margin: 0;
+}
+
+.profile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.profile-option {
+    background-color: #F4F8FB;
+    border: 1px solid #DCECF4;
+    border-radius: 14px;
+    padding: 16px;
+    color: #315D7D;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-option:hover {
+    background-color: #DCECF4;
+    transform: translateY(-1px);
+}
+/* ReuseHub - Settings Panel */
+
+.settings-panel {
+    display: none;
+    background-color: #B7D3E6;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.settings-panel.show {
+    display: block;
+}
+
+.settings-panel h3 {
+    color: #315D7D;
+    margin-top: 0;
+}
+
+.setting-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #315D7D;
+    font-weight: 600;
+}
+
+.setting-row button {
+    background-color: #6F9FBE;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+/* ReuseHub - Dark Mode */
+
+body.dark-mode {
+    background-color: #1E2933;
+    color: #E5EDF3;
+}
+
+body.dark-mode .header h1 {
+    color: #DCECF4;
+}
+
+body.dark-mode .profile-info {
+    background-color: #334B5C;
+}
+
+body.dark-mode .profile-info h2 {
+    color: #DCECF4;
+}
+
+body.dark-mode .profile-info p {
+    color: #B7D3E6;
+}
+
+body.dark-mode .profile-option {
+    background-color: #293845;
+    border-color: #42596A;
+    color: #DCECF4;
+}
+
+body.dark-mode .settings-panel {
+    background-color: #334B5C;
+    color: #DCECF4;
+}
+
+body.dark-mode .settings-panel h3,
+body.dark-mode .setting-row {
+    color: #DCECF4;
+}
+/* Dark Mode - Home Screen */
+
+body.dark-mode .category,
+body.dark-mode .resource-card {
+    background-color: #334B5C;
+    color: #E5EDF3;
+}
+
+body.dark-mode .category {
+    border: 1px solid #42596A;
+}
+
+body.dark-mode .resource-card h3 {
+    color: #DCECF4;
+}
+
+body.dark-mode .resource-card p {
+    color: #B7D3E6;
+}
+
+body.dark-mode .resource-icon {
+    background-color: #293845;
+}
+
+body.dark-mode .search-box {
+    background-color: #293845;
+    border-color: #42596A;
+}
+
+body.dark-mode .search-box input {
+    color: #E5EDF3;
+}
+
+body.dark-mode .search-box input::placeholder {
+    color: #9DB4C4;
+}
+/* Dark Mode - My Items */
+
+body.dark-mode .my-items-tab {
+    background-color: #293845;
+    color: #DCECF4;
+}
+
+body.dark-mode .my-items-tab.active {
+    background-color: #476C88;
+    color: #FFFFFF;
+}
+
+body.dark-mode .my-listing-card,
+body.dark-mode .browse-card {
+    background-color: #334B5C;
+    color: #E5EDF3;
+    border-color: #42596A;
+}
+
+body.dark-mode .my-listing-card h3,
+body.dark-mode .browse-card h3 {
+    color: #DCECF4;
+}
+
+body.dark-mode .my-listing-card p,
+body.dark-mode .browse-card p {
+    color: #B7D3E6;
+}
+
+body.dark-mode .my-listing-icon,
+body.dark-mode .browse-book-icon {
+    background-color: #293845;
+}
+
+body.dark-mode .empty-message {
+    background-color: #293845;
+    border-color: #476C88;
+    color: #B7D3E6;
+}
+/* Dark Mode - Browse */
+
+body.dark-mode .filter {
+    background-color: #293845;
+    color: #DCECF4;
+    border-color: #42596A;
+}
+
+body.dark-mode .filter.active {
+    background-color: #476C88;
+    color: #FFFFFF;
+}
+
+body.dark-mode .browse-card {
+    background-color: #334B5C;
+    border-color: #42596A;
+    color: #E5EDF3;
+}
+
+body.dark-mode .browse-card h3 {
+    color: #DCECF4;
+}
+
+body.dark-mode .browse-card p {
+    color: #B7D3E6;
+}
+
+body.dark-mode .save-btn {
+    background-color: #476C88;
+    color: #FFFFFF;
+    border-color: #587F9C;
+}
+
+body.dark-mode .save-btn:hover {
+    background-color: #587F9C;
+}
+/* Dark Mode - My Items Tabs Fix */
+body.dark-mode .my-items-tab {
+    background-color: #293845 !important;
+    color: #DCECF4 !important;
+    border-color: #42596A !important;
+}
+
+body.dark-mode .my-items-tab.active {
+    background-color: #476C88 !important;
+    color: #FFFFFF !important;
+}
+/* Form input polish */
+
+input,
+select,
+textarea {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6F9FBE;
+    box-shadow: 0 0 0 3px rgba(111, 159, 190, 0.12);
+}
+/* Screen transition */
+
+.screen.active {
+    animation: screenFade 0.2s ease;
+}
+
+@keyframes screenFade {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Consistent card styling */
+
+.resource-card,
+.browse-card,
+.my-listing-card,
+.category {
+    border-radius: 16px;
+}
+
+.my-listing-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.my-listing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(49, 93, 125, 0.10);
+}
+/* Empty state polish */
+
+.empty-message {
+    text-align: center;
+    padding: 28px 20px;
+    background-color: #F4F8FB;
+    border: 1px dashed #B7D3E6;
+    border-radius: 16px;
+    color: #728C9B;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+/* Bottom navigation active indicator */
+
+.nav-item.active span {
+    position: relative;
+}
+
+.nav-item.active span::after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 3px;
+    background-color: #6F9FBE;
+    border-radius: 10px;
+    margin: 4px auto 0;
+}
+/* Typography polish */
+
+.header h1 {
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+.header p {
+    line-height: 1.6;
+}
+
+section h2 {
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.resource-card h3,
+.browse-card h3,
+.my-listing-card h3 {
+    line-height: 1.4;
+}
+
+.resource-card p,
+.browse-card p,
+.my-listing-card p {
+    line-height: 1.5;
+}
+/* Dark Mode - My Items Tab Panel */
+body.dark-mode .my-items-tabs {
+    background-color: #293845 !important;
+}
+
+body.dark-mode .my-items-tabs .tab {
+    background-color: transparent !important;
+    color: #B7D3E6 !important;
+}
+
+body.dark-mode .my-items-tabs .tab.active {
+    background-color: #476C88 !important;
+    color: #FFFFFF !important;
+}
+
+/* Dark Mode - Resource Details */
+body.dark-mode #resource-details-screen .resource-detail-card {
+    background: #334B5C !important;
+    border: 1px solid #42596A !important;
+    color: #E5EDF3 !important;
+}
+
+body.dark-mode .resource-detail-card h2 {
+    color: #DCECF4;
+}
+
+body.dark-mode .resource-detail-card p {
+    color: #B7D3E6;
+}
+
+body.dark-mode .resource-detail-card .price {
+    color: #A9D4F0;
+}
+
+body.dark-mode .resource-detail-icon {
+    background-color: #293845;
+}
+
+body.dark-mode .resource-description {
+    background-color: #293845;
+    color: #DCECF4;
+}
+
+body.dark-mode .resource-description h3 {
+    color: #DCECF4;
+}
+
+body.dark-mode .contact-seller-btn,
+body.dark-mode .borrow-request-btn {
+    background-color: #476C88;
+    color: #FFFFFF;
+    border-color: #587F9C;
+}
+/* Dark Mode - Add Resource Form */
+body.dark-mode .add-item-form {
+    background-color: #334B5C !important;
+    color: #DCECF4 !important;
+    border-color: #42596A !important;
+}
+
+body.dark-mode .add-item-form h2 {
+    color: #DCECF4 !important;
+}
+
+body.dark-mode .add-item-form input,
+body.dark-mode .add-item-form select,
+body.dark-mode .add-item-form textarea {
+    background-color: #293845 !important;
+    color: #E5EDF3 !important;
+    border-color: #42596A !important;
+}
+
+body.dark-mode .add-item-form input::placeholder,
+body.dark-mode .add-item-form textarea::placeholder {
+    color: #9DB4C4 !important;
+}
+
+body.dark-mode .add-item-form select option {
+    background-color: #293845;
+    color: #E5EDF3;
+}
+
+body.dark-mode .add-item-form .submit-item-btn {
+    background-color: #476C88 !important;
+    color: #FFFFFF !important;
+}
+/* Dark Mode - Bottom Navigation */
+body.dark-mode .bottom-nav {
+    background-color: #293845 !important;
+    border-color: #42596A !important;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .nav-item {
+    color: #B7D3E6 !important;
+}
+
+body.dark-mode .nav-item.active {
+    color: #A9D4F0 !important;
+}
+
+body.dark-mode .nav-item.active span::after {
+    background-color: #A9D4F0 !important;
+}
+/* Dark Mode - Edit Profile */
+body.dark-mode #edit-profile-form {
+    background-color: #334B5C !important;
+    color: #DCECF4 !important;
+    border-color: #42596A !important;
+}
+
+body.dark-mode #edit-profile-form h3 {
+    color: #DCECF4 !important;
+}
+
+body.dark-mode #edit-profile-form input {
+    background-color: #293845 !important;
+    color: #E5EDF3 !important;
+    border-color: #42596A !important;
+}
+
+body.dark-mode #edit-profile-form input::placeholder {
+    color: #9DB4C4 !important;
+}
+
+body.dark-mode #edit-profile-form button {
+    background-color: #476C88 !important;
+    color: #FFFFFF !important;
+}
+/* ReuseHub - Browse Sorting */
+.sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.sort-container label {
+    font-size: 13px;
+    color: #315D7D;
+    font-weight: 600;
+}
+
+.sort-container select {
+    padding: 10px 12px;
+    border: 1px solid #B7D3E6;
+    border-radius: 10px;
+    background-color: #F4F8FB;
+    color: #374151;
+    font-size: 13px;
+    outline: none;
+}
+
+/* Dark Mode - Browse Sorting */
+body.dark-mode .sort-container label {
+    color: #DCECF4;
+}
+
+body.dark-mode .sort-container select {
+    background-color: #293845;
+    color: #E5EDF3;
+    border-color: #42596A;
+}
+
+body.dark-mode .sort-container select option {
+    background-color: #293845;
+    color: #E5EDF3;
+}
+/* ReuseHub - Availability Badges */
+
+.availability-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: 5px;
+    background-color: #DDF3E4;
+    color: #347A4B;
+}
+/* Availability Status Colors */
+
+.availability-status.available {
+    background-color: #DDF3E4;
+    color: #347A4B;
+}
+
+.availability-status.reserved {
+    background-color: #FFF0D9;
+    color: #9A6700;
+}
+
+.availability-status.unavailable {
+    background-color: #FBE3E3;
+    color: #B33A3A;
+}
+/* Availability Badges - Dark Mode */
+
+body.dark-mode .availability-status.available {
+    background-color: #294B38 !important;
+    color: #A8E6B9 !important;
+}
+
+body.dark-mode .availability-status.reserved {
+    background-color: #59452A !important;
+    color: #FFD28A !important;
+}
+
+body.dark-mode .availability-status.unavailable {
+    background-color: #593333 !important;
+    color: #FFAAAA !important;
+}
+/* ReuseHub - Cancel Button */
+
+.cancel-item-btn {
+    background-color: #F4F8FB;
+    color: #C05C5C;
+    border: 1px solid #D9A6A6;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cancel-item-btn:hover {
+    background-color: #F3DEDE;
+    transform: translateY(-1px);
+}
+/* ReuseHub - Form Button Layout */
+
+#add-item-form .submit-item-btn,
+#add-item-form .cancel-item-btn {
+    width: calc(50% - 6px);
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#add-item-form .cancel-item-btn {
+    margin-left: 8px;
+}
+/* ReuseHub - Form Actions */
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.form-actions button {
+    flex: 1;
+    width: auto;
+    margin: 0;
+}
+
+/* ReuseHub - Remove from Saved Button */
+
+.remove-saved-btn {
+    background-color: #F4F8FB;
+    color: #C05C5C;
+    border: 1px solid #D9A6A6;
+    border-radius: 10px;
+    padding: 9px 14px;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.remove-saved-btn:hover {
+    background-color: #F3DEDE;
+    transform: translateY(-1px);
+}
+
+/* ReuseHub - Saved Card Button Layout */
+
+#saved-content .remove-saved-btn {
+    flex-basis: 100%;
+    width: fit-content;
+    margin-left: 0;
+}
+
+/* ReuseHub - Saved Card Vertical Layout */
+
+#saved-content .browse-card {
+    flex-wrap: wrap;
+}
+
+#saved-content .remove-saved-btn {
+    margin-left: 0;
+    margin-top: 3px;
+    width: fit-content;
+}
+
+/* ReuseHub - Saved Card Spacing */
+
+#saved-content .browse-card {
+    margin-bottom: 16px;
+}
+
+/* Notification Bell Icon */
+
+.notification-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #315D7D;
+    stroke: currentColor;
+}
+
+.notification-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* ReuseHub - Notifications Panel */
+
+.header {
+    position: relative;
+}
+
+.notification-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 280px;
+    background-color: #F4F8FB;
+    border: 1px solid #DCECF4;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(49, 93, 125, 0.12);
+    padding: 16px;
+    z-index: 100;
+}
+
+.notification-panel-header h3 {
+    color: #315D7D;
+    font-size: 16px;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #DCECF4;
+}
+
+.notification-content {
+    text-align: center;
+    padding: 18px 8px 10px;
+}
+
+.notification-content p {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.notification-content span {
+    color: #728C9B;
+    font-size: 12px;
+}
+
+.notification-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-btn .notification-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: #E66B6B;
+    border-radius: 50%;
+    border: 2px solid #DCECF4;
+    z-index: 10;
+}
+
+/* ReuseHub - Notification Items */
+
+.notification-item {
+    background-color: #DCECF4;
+    color: #315D7D;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: left;
+    border-left: 3px solid #6F9FBE;
+}
+
+/* ReuseHub - Clear Notifications Button */
+
+.notification-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#clear-notifications-btn {
+    background: none;
+    border: none;
+    color: #728C9B;
+    font-size: 11px;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+#clear-notifications-btn:hover {
+    background-color: #DCECF4;
+    color: #315D7D;
+}
+
+/* Hide scrollbar but keep scrolling */
+.screen.active {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.screen.active::-webkit-scrollbar {
+    display: none;
+}

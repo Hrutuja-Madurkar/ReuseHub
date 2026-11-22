@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#DCECF4">
+    <title>ReuseHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app">
+        <main id="home-screen" class="screen active">
+
+        <!-- Header -->
+<header class="header">
+    <div class="home-header-top">
+        <h1>ReuseHub</h1>
+
+        <button class="notification-btn" id="notification-btn" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+        <path d="M10 21h4"/>
+    </svg>
+    <span class="notification-dot"></span>
+</button>
+    </div>
+    <!-- Notifications Panel -->
+<div class="notification-panel" id="notification-panel">
+   <div class="notification-panel-header">
+    <h3>Notifications</h3>
+    <button id="clear-notifications-btn" type="button">Clear All</button>
+</div>
+
+    <div class="notification-content">
+        <p>You're all caught up!</p>
+        <span>No new notifications right now.</span>
+    </div>
+</div>
+
+    <p>Share • Reuse • Save</p>
+</header>
+
+        <!-- Search -->
+        <div class="search-box">
+           <span class="search-icon">🔎</span>
+<input type="text" id="home-search" placeholder="Search textbooks, lab coats, etc...">
+        </div>
+        <p id="home-no-results" class="no-results" style="display: none;">
+    No resources found.
+</p>
+
+        <!-- Categories -->
+        <section class="categories">
+            <h2>Categories</h2>
+
+           <div class="category-grid">
+    <div class="category" data-category="books">📚 Books</div>
+<div class="category" data-category="lab">🥼 Lab</div>
+<div class="category" data-category="tools">📐 Drawing Tools</div>
+<div class="category" data-category="calculator">🧮 Calculator</div>
+<div class="category" data-category="notes">📝 Notes</div>
+<div class="category" data-category="stationery">✏️ Stationery</div>
+</div>
+        </section>
+
+        <!-- Featured Resource -->
+       <section class="featured">
+    <h2>Featured Resources</h2>
+
+    <div class="resource-card" id="featured-resource-card">
+
+        <div class="resource-icon">
+            📖
+        </div>
+
+        <div class="resource-details">
+            <h3>Engineering Mechanics</h3>
+            <p class="price">Price: ₹200</p>
+            <p>Condition: Good</p>
+            <p class="status">Available for exchange</p>
+        </div>
+
+    </div>
+</section>
+</main>
+
+</main>
+
+<!-- Browse Screen -->
+<main id="browse-screen" class="screen">
+    <header class="header">
+        <h1>Browse Resources</h1>
+    </header>
+
+    <div class="search-box">
+        <span class="search-icon">🔎</span>
+    <input type="text" id="browse-search" placeholder="Search resources...">
+    </div>
+
+    <div class="browse-filters">
+    <button class="filter active" data-category="all">All</button>
+    <button class="filter" data-category="books">Books</button>
+    <button class="filter" data-category="lab">Lab</button>
+    <button class="filter" data-category="calculator">Calculator</button>
+    <button class="filter" data-category="tools">Tools</button>
+    <button class="filter" data-category="notes">Notes</button>
+<button class="filter" data-category="stationery">Stationery</button>
+</div>
+<div class="sort-container">
+    <label for="browse-sort">Sort by:</label>
+    <select id="browse-sort">
+        <option value="default">Default</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="recent">Recently Added</option>
+    </select>
+</div>
+    <!-- Resource Listings -->
+
+<div class="browse-resources">
+
+    <!-- Resource 1 -->
+    <div class="browse-card" data-category="books">
+        <div class="browse-book-icon">📘</div>
+
+        <div class="browse-details">
+            <h3>Engineering Mathematics-I</h3>
+            <p class="price">₹250</p>
+            <p>Condition: Good</p>
+            <p class="status">Available for sale</p>
+            <p class="availability-status available">Availability: Available</p>
+            <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
+        </div>
+    </div>
+    <!-- Resource - Notes -->
+<div class="browse-card" data-category="notes">
+    <div class="browse-book-icon">📝</div>
+
+    <div class="browse-details">
+        <h3>Engineering Physics Unit 1 Notes</h3>
+        <p class="price">₹80</p>
+        <p>Condition: Good</p>
+        <p class="status">Available for sale</p>
+        <p class="availability-status available">Availability: Available</p>
+        <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
+    </div>
+</div>
+
+<!-- Resource - Stationery -->
+<div class="browse-card" data-category="stationery">
+    <div class="browse-book-icon">✏️</div>
+
+    <div class="browse-details">
+        <h3>Engineering Drawing Stationery Set</h3>
+        <p class="price">₹120</p>
+        <p>Condition: Good</p>
+        <p class="status">Available for sale</p>
+        <p class="availability-status available">Availability: Available</p>
+        <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
+    </div>
+</div>
+
+    <!-- Resource 2 -->
+    <div class="browse-card" data-category="tools">
+        <div class="browse-book-icon">📐</div>
+
+        <div class="browse-details">
+            <h3>Engineering Drawing Kit</h3>
+            <p class="price">₹350</p>
+            <p>Condition: Good</p>
+            <p class="status">Available for exchange</p>
+            <p class="availability-status available">Availability: Available</p>
+            <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
+        </div>
+    </div>
+    <div class="no-results" id="no-results">
+    <h3>No resources found 🔎</h3>
+    <p>Try a different search or category.</p>
+</div>
+
+</div>
+
+</main>
+<!-- Resource Details Screen -->
+<main id="resource-details-screen" class="screen">
+
+    <header class="header">
+        <button id="details-back-btn">← Back</button>
+        <h1>Resource Details</h1>
+    </header>
+
+    <div class="resource-detail-card">
+
+        <div class="resource-detail-icon" id="detail-icon">📘</div>
+
+        <h2 id="detail-name">Resource Name</h2>
+
+        <p class="price" id="detail-price">₹0</p>
+
+        <p id="detail-category">Category</p>
+
+        <p id="detail-condition">Condition</p>
+
+        <p class="status" id="detail-status">Availability</p>
+        <p id="detail-availability"></p>
+
+        <div class="resource-description">
+            <h3>Description</h3>
+            <p id="detail-description">No description provided.</p>
+        </div>
+        <button id="contact-seller-btn" class="contact-seller-btn">
+    Contact Seller
+</button>
+<button id="borrow-request-btn" class="borrow-request-btn">
+    Request to Borrow
+</button>
+
+    </div>
+
+</main>
+<!-- My Items Screen -->
+<main id="my-items-screen" class="screen">
+
+    <header class="header">
+        <h1>My Items</h1>
+    </header>
+
+    <div class="my-items-tabs">
+    <button class="tab active" data-tab="listings">My Listings</button>
+    <button class="tab" data-tab="borrowed">Borrowed</button>
+    <button class="tab" data-tab="saved">Saved</button>
+</div>
+
+    <button class="add-item-btn">+ Add Item</button>
+    <!-- Add Item Form -->
+<!-- Add Item Form -->
+<form class="add-item-form" id="add-item-form">
+
+    <h2>Add a Resource</h2>
+
+    <input type="text" id="item-name" placeholder="Resource name" required>
+
+    <select id="item-category" required>
+        <option value="">Select Category</option>
+        <option value="books">Books</option>
+        <option value="lab">Lab Coats</option>
+        <option value="tools">Drawing Tools</option>
+        <option value="calculator">Calculator</option>
+        <option value="other">Other</option>
+    </select>
+
+    <input type="number" id="item-price" placeholder="Price (₹)" min="0" required>
+
+    <select id="item-condition" required>
+        <option value="">Condition</option>
+        <option>New</option>
+        <option>Like New</option>
+        <option>Good</option>
+        <option>Fair</option>
+    </select>
+
+    <select id="item-type" required>
+        <option value="">Listing Type</option>
+        <option value="sale">For Sale</option>
+        <option value="exchange">Exchange</option>
+        <option value="donate">Donate</option>
+        <option value="borrow">Lend</option>
+    </select>
+
+    <select id="item-availability" required>
+    <option value="available">Available</option>
+    <option value="reserved">Reserved</option>
+    <option value="unavailable">Unavailable</option>
+</select>
+    <textarea id="item-description" placeholder="Description (optional)"></textarea>
+
+    <div class="form-actions">
+    <button type="submit" class="submit-item-btn">Add Resource</button>
+    <button type="button" class="cancel-item-btn">Cancel</button>
+</div>
+
+</form>
+
+   
+    <!-- My Listing -->
+
+<!-- My Listings Content -->
+<div class="tab-content active" id="listings-content">
+
+    <div class="my-listing-card"
+         data-name="Engineering Mathematics-I"
+         data-category="books"
+         data-price="250"
+         data-condition="Good"
+         data-type="sell"
+         data-description=""
+         data-availability="available">
+
+        <div class="my-listing-icon">📘</div>
+
+        <div class="my-listing-details">
+            <h3>Engineering Mathematics-I</h3>
+            <p>₹250</p>
+            <p>Condition: Good</p>
+            <p class="status">Available for sale</p>
+            <p class="availability-status available">Availability: Available</p>
+        </div>
+
+        <div class="listing-actions">
+            <button class="edit-listing-btn">Edit Listing</button>
+            <button class="delete-listing-btn">Delete Listing</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Borrowed Content -->
+<div class="tab-content" id="borrowed-content">
+    <p class="empty-message">You haven't borrowed anything yet.</p>
+</div>
+
+<!-- Saved Content -->
+<div class="tab-content" id="saved-content">
+    <p class="empty-message" id="saved-empty-message">You haven't saved anything yet.</p>
+</div>
+
+</main>
+<!-- Profile Screen -->
+<main id="profile-screen" class="screen">
+
+    <header class="header">
+        <h1>My Profile</h1>
+    </header>
+
+    <div class="profile-info">
+        <div class="profile-avatar">👤</div>
+       <h2 id="display-profile-name">Student</h2>
+<p id="display-profile-details">ReuseHub Student</p>
+    </div>
+
+    <!-- Edit Profile Form -->
+<form id="edit-profile-form" class="edit-profile-form">
+
+    <h3>Edit Student Profile</h3>
+
+    <input type="text" id="profile-name" placeholder="Enter your name">
+
+    <input type="text" id="profile-college" placeholder="College name">
+
+    <input type="text" id="profile-branch" placeholder="Branch (e.g. IT)">
+
+    <button type="submit">Save Profile</button>
+
+</form>
+    <div class="profile-menu">
+        <!-- Settings Panel -->
+<div class="settings-panel" id="settings-panel">
+
+    <h3>Settings</h3>
+
+    <div class="setting-row">
+        <span>Dark Mode</span>
+        <button id="dark-mode-toggle">🌙 Enable Dark Mode</button>
+    </div>
+
+</div>
+        <div class="profile-option" id="edit-profile-btn">✏️ Edit Profile</div>
+        <div class="profile-option" id="profile-my-listings">📚 My Listings</div>
+        <div class="profile-option" id="profile-my-transactions">📋 My Transactions</div>
+        <div class="profile-option" id="profile-settings">⚙️ Settings</div>
+    </div>
+
+</main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+    <div class="nav-item active" data-page="home">
+        🏠<span>Home</span>
+    </div>
+
+    <div class="nav-item" data-page="browse">
+        🔍<span>Browse</span>
+    </div>
+
+    <div class="nav-item" data-page="my-items">
+        📦<span>My Items</span>
+    </div>
+
+    <div class="nav-item" data-page="profile">
+        👤<span>Profile</span>
+    </div>
+</nav>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
