@@ -1695,3 +1695,36 @@ body.dark-mode .availability-status.unavailable {
 .featured .resource-card {
     margin-bottom: 15px;
 }
+
+/* About ReuseHub */
+
+.about-reusehub {
+    margin-top: 22px;
+    padding: 18px;
+    background-color: #DCEAF3;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.about-reusehub h4 {
+    color: #315D7D;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.about-reusehub p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #315D7D;
+}
+
+.about-reusehub .about-credit {
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+.about-reusehub .about-tagline {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
