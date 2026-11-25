@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#DCECF4">
     <title>ReuseHub</title>
@@ -80,10 +81,26 @@
             <h3>Engineering Mechanics</h3>
             <p class="price">Price: ₹200</p>
             <p>Condition: Good</p>
-            <p class="status">Available for exchange</p>
+            <p class="status">Available for sale</p>
         </div>
 
     </div>
+
+    <!-- Featured Resource 2 -->
+<div class="resource-card" id="featured-labcoat-card">
+
+    <div class="resource-icon">
+        🥼
+    </div>
+
+    <div class="resource-details">
+        <h3>Laboratory Coat</h3>
+        <p class="price">Price: ₹150</p>
+        <p>Condition: Good</p>
+        <p class="status">Available for sale</p>
+    </div>
+
+</div>
 </section>
 </main>
 
@@ -123,7 +140,7 @@
 <div class="browse-resources">
 
     <!-- Resource 1 -->
-    <div class="browse-card" data-category="books">
+    <div class="browse-card" data-category="books" data-availability="available">
         <div class="browse-book-icon">📘</div>
 
         <div class="browse-details">
@@ -136,13 +153,13 @@
         </div>
     </div>
     <!-- Resource - Notes -->
-<div class="browse-card" data-category="notes">
+<div class="browse-card" data-category="notes" data-availability="available">
     <div class="browse-book-icon">📝</div>
 
     <div class="browse-details">
         <h3>Engineering Physics Unit 1 Notes</h3>
         <p class="price">₹80</p>
-        <p>Condition: Good</p>
+        <p>Condition: Fair</p>
         <p class="status">Available for sale</p>
         <p class="availability-status available">Availability: Available</p>
         <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
@@ -150,35 +167,35 @@
 </div>
 
 <!-- Resource - Stationery -->
-<div class="browse-card" data-category="stationery">
+<div class="browse-card" data-category="stationery" data-availability="reserved">
     <div class="browse-book-icon">✏️</div>
 
     <div class="browse-details">
         <h3>Engineering Drawing Stationery Set</h3>
         <p class="price">₹120</p>
         <p>Condition: Good</p>
-        <p class="status">Available for sale</p>
-        <p class="availability-status available">Availability: Available</p>
+        <p class="status">Available for lending</p>
+        <p class="availability-status reserved">Availability: Reserved</p>
         <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
     </div>
 </div>
 
     <!-- Resource 2 -->
-    <div class="browse-card" data-category="tools">
+    <div class="browse-card" data-category="tools" data-availability="available">
         <div class="browse-book-icon">📐</div>
 
         <div class="browse-details">
             <h3>Engineering Drawing Kit</h3>
             <p class="price">₹350</p>
             <p>Condition: Good</p>
-            <p class="status">Available for exchange</p>
+            <p class="status">Available for lending</p>
             <p class="availability-status available">Availability: Available</p>
             <button class="save-btn" onclick="saveResource(this)">♡ Save</button>
         </div>
     </div>
 
 <!-- Resource - Lab Coat -->
-<div class="browse-card" data-category="lab">
+<div class="browse-card" data-category="lab" data-availability="available">
     <div class="browse-book-icon">🥼</div>
 
     <div class="browse-details">
@@ -192,12 +209,12 @@
 </div>
 
 <!-- Resource - Calculator -->
-<div class="browse-card" data-category="calculator">
+<div class="browse-card" data-category="calculator" data-availability="available">
     <div class="browse-book-icon">🧮</div>
 
     <div class="browse-details">
         <h3>Scientific Calculator</h3>
-        <p class="price">₹300</p>
+        <p class="price">₹600</p>
         <p>Condition: Good</p>
         <p class="status">Available for sale</p>
         <p class="availability-status available">Availability: Available</p>
@@ -206,7 +223,7 @@
 </div>
 
 <!-- Resource - Programming Book -->
-<div class="browse-card" data-category="books">
+<div class="browse-card" data-category="books" data-availability="available">
     <div class="browse-book-icon">📗</div>
 
     <div class="browse-details">
@@ -220,7 +237,7 @@
 </div>
 
 <!-- Resource - Chemistry Notes -->
-<div class="browse-card" data-category="notes">
+<div class="browse-card" data-category="notes" data-availability="available">
     <div class="browse-book-icon">📝</div>
 
     <div class="browse-details">
@@ -303,7 +320,7 @@
     <select id="item-category" required>
         <option value="">Select Category</option>
         <option value="books">Books</option>
-        <option value="lab">Lab Coats</option>
+        <option value="lab">Lab</option>
         <option value="tools">Drawing Tools</option>
         <option value="calculator">Calculator</option>
         <option value="other">Other</option>
@@ -410,11 +427,15 @@
 
     <input type="text" id="profile-branch" placeholder="Branch (e.g. IT)">
 
+    <div class="profile-form-buttons">
     <button type="submit">Save Profile</button>
+    <button type="button" id="cancel-edit-profile">Cancel</button>
+</div>
 
 </form>
     <div class="profile-menu">
         <!-- Settings Panel -->
+<!-- Settings Panel -->
 <div class="settings-panel" id="settings-panel">
 
     <h3>Settings</h3>
@@ -423,6 +444,8 @@
         <span>Dark Mode</span>
         <button id="dark-mode-toggle">🌙 Enable Dark Mode</button>
     </div>
+
+    <button type="button" id="cancel-settings-btn">Cancel</button>
 
 </div>
         <div class="profile-option" id="edit-profile-btn">✏️ Edit Profile</div>
@@ -454,7 +477,46 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <!-- ReuseHub - Item Added Popup -->
+<div class="contact-popup-overlay" id="item-added-popup">
+    <div class="contact-popup-card">
+        <h3>✓ Item Added Successfully!</h3>
+        <p>Your item has been listed on ReuseHub.</p>
+        <button id="item-added-ok">OK</button>
+    </div>
+</div>
+
+<!-- ReuseHub - Profile Updated Popup -->
+<div class="contact-popup-overlay" id="profile-updated-popup">
+    <div class="contact-popup-card">
+        <h3>✓ Profile Updated!</h3>
+        <p>Your profile has been updated successfully.</p>
+        <button id="profile-updated-ok">OK</button>
+    </div>
+</div>
+
+
+    <!-- ReuseHub - Contact Seller Popup -->
+<div class="contact-popup-overlay" id="contact-popup">
+    <div class="contact-popup-card">
+        <h3>Contact Seller</h3>
+        <p>Seller contact details will be available soon!</p>
+        <button id="contact-popup-ok">OK</button>
+    </div>
+</div>
+
+<!-- Borrow Request Popup -->
+<div class="contact-popup-overlay" id="borrow-request-popup">
+    <div class="contact-popup-card">
+        <h3>✓ Request Sent!</h3>
+        <p>Your borrow request has been sent successfully. Status: Pending.</p>
+        <button id="borrow-request-ok">OK</button>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
 

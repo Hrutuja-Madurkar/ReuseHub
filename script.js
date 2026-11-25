@@ -8,6 +8,19 @@ navItems.forEach(item => {
 
         // Get the screen name
         const page = item.dataset.page;
+
+// Clear Browse search when returning to Browse
+if (page === "browse") {
+    browseSearch.value = "";
+}
+
+        // Clear Home search and scroll to top when returning to Home
+if (page === "home") {
+    homeSearch.value = "";
+
+    const homeScreen = document.querySelector("#home-screen");
+    homeScreen.scrollTop = 0;
+}
         // Reset Browse to All when opened from bottom navigation
 if (page === "browse") {
     currentCategory = "all";
@@ -35,11 +48,27 @@ if (page === "browse") {
         // Show the selected screen
         document.getElementById(page + "-screen").classList.add("active");
 
+        // Reset Home scroll position
+if (page === "home") {
+    document.getElementById("home-screen").scrollTop = 0;
+}
+
+// Reset Browse scroll position
+if (page === "browse") {
+    document.getElementById("browse-screen").scrollTop = 0;
+}
+
     });
 });
 
 // Android Back Button - Return to Home
 window.addEventListener("popstate", () => {
+    // Close Notifications if open
+if (notificationPanel.style.display === "block") {
+    notificationPanel.style.display = "none";
+    history.pushState({ page: "home" }, "", "#home");
+    return;
+}
 
     const activeScreen = document.querySelector(".screen.active");
 
@@ -380,7 +409,8 @@ editingBrowseCard = null;
     myItemTabs[0].click();
 
     if (!isLoadingListings) {
-    alert("Resource added successfully!");
+    const itemAddedPopup = document.querySelector("#item-added-popup");
+    itemAddedPopup.classList.add("show");
 }
 
 });
@@ -457,23 +487,27 @@ if (sampleListing) {
 const homeSearch = document.querySelector("#home-search");
 
 homeSearch.addEventListener("input", () => {
-    const searchText = homeSearch.value.toLowerCase().trim();
+    const searchText = homeSearch.value;
 
-    // Open Browse screen when searching
     if (searchText !== "") {
+        // Open Browse screen
         navItems.forEach(nav => nav.classList.remove("active"));
         screens.forEach(screen => screen.classList.remove("active"));
+
         document.querySelector('[data-page="browse"]').classList.add("active");
         document.querySelector("#browse-screen").classList.add("active");
+
+        // Transfer search text to Browse
+        browseSearch.value = searchText;
+        browseSearch.dispatchEvent(new Event("input", { bubbles: true }));
+
+        // Focus Browse search so typing can continue
+        browseSearch.focus();
+        browseSearch.setSelectionRange(
+            browseSearch.value.length,
+            browseSearch.value.length
+        );
     }
-
-    resourceCards.forEach(card => {
-        const matchesSearch = card.textContent.toLowerCase().includes(searchText);
-        card.style.display = matchesSearch ? "flex" : "none";
-    });
-
-    // Update No Results message
-    checkNoResults();
 });
 // ReuseHub - Browse Search
 const browseSearch = document.querySelector("#browse-search");
@@ -561,7 +595,25 @@ if (emptyMessage) {
     button.textContent = "♥ Saved";
     button.disabled = true;
 
-    alert(resourceName + " saved successfully!");
+    showToast(resourceName + " saved successfully! ❤️");
+}
+
+// ReuseHub - Custom Toast Notification
+function showToast(message) {
+    let toast = document.querySelector("#reusehub-toast");
+
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "reusehub-toast";
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
 }
 // ReuseHub - Resource Details
 
@@ -587,8 +639,10 @@ borrowRequestButton.style.display =
     card.dataset.category.charAt(0).toUpperCase() + card.dataset.category.slice(1);
     document.querySelector("#detail-condition").textContent = condition;
     document.querySelector("#detail-status").textContent = status;
-    document.querySelector("#detail-availability").textContent =
-    "Availability: " + (card.dataset.availability || "available");
+    const availability = card.dataset.availability || "available";
+
+document.querySelector("#detail-availability").textContent =
+    "Availability: " + availability.charAt(0).toUpperCase() + availability.slice(1);
     document.querySelector("#detail-description").textContent =
     card.dataset.description || "No description provided.";
 
@@ -634,6 +688,8 @@ openResourceDetails(card);
 // Back button
 detailsBackButton.addEventListener("click", () => {
     detailsScreen.classList.remove("active");
+    screens.forEach(screen => screen.classList.remove("active"));
+    navItems.forEach(nav => nav.classList.remove("active"));
 
     if (previousScreen === "saved") {
         document.querySelector("#my-items-screen").classList.add("active");
@@ -650,11 +706,14 @@ detailsBackButton.addEventListener("click", () => {
 
         document.querySelector("#saved-content").classList.add("active");
 
-    } else {
-        document.querySelector("#browse-screen").classList.add("active");
-    }
+        document.querySelector('[data-page="my-items"]').classList.add("active");
 
-    document.querySelector('[data-page="browse"]').classList.add("active");
+    } else {
+        const targetScreen = previousScreen === "home" ? "home" : "browse";
+
+        document.querySelector(`#${targetScreen}-screen`).classList.add("active");
+        document.querySelector(`[data-page="${targetScreen}"]`).classList.add("active");
+    }
 });
 // ReuseHub - Load Saved Resources
 
@@ -707,12 +766,18 @@ if (savedResources.length > 0) {
         emptyMessage.remove();
     }
 }
-// ReuseHub - Contact Seller
+// ReuseHub - Contact Seller Popup
 
 const contactSellerButton = document.querySelector("#contact-seller-btn");
+const contactPopup = document.querySelector("#contact-popup");
+const contactPopupOk = document.querySelector("#contact-popup-ok");
 
 contactSellerButton.addEventListener("click", () => {
-    alert("Seller contact details will be available soon!");
+    contactPopup.classList.add("show");
+});
+
+contactPopupOk.addEventListener("click", () => {
+    contactPopup.classList.remove("show");
 });
 // ReuseHub - Borrow Request
 
@@ -776,8 +841,16 @@ if (borrowedContent.querySelectorAll(".my-listing-card").length === 0) {
 borrowedCard.append(cancelButton);
 
 
-alert("Borrow request sent! Status: Pending (Prototype demo).");
+document.querySelector("#borrow-request-popup").classList.add("show");
 
+});
+
+// ReuseHub - Borrow Request Popup
+const borrowRequestPopup = document.querySelector("#borrow-request-popup");
+const borrowRequestOk = document.querySelector("#borrow-request-ok");
+
+borrowRequestOk.addEventListener("click", () => {
+    borrowRequestPopup.classList.remove("show");
 });
 // ReuseHub - Edit Profile Toggle
 
@@ -812,8 +885,29 @@ editProfileForm.addEventListener("submit", function (event) {
     // Close form after saving
     editProfileForm.classList.remove("show");
 
-    alert("Profile updated successfully!");
+    document.querySelector("#profile-updated-popup").classList.add("show");
 });
+
+// ReuseHub - Cancel Edit Profile
+
+const cancelEditProfile = document.querySelector("#cancel-edit-profile");
+
+cancelEditProfile.addEventListener("click", () => {
+
+    // Restore previously saved profile details
+    const savedProfile = JSON.parse(localStorage.getItem("reusehub-profile"));
+
+    if (savedProfile) {
+        document.querySelector("#profile-name").value = savedProfile.name || "";
+        document.querySelector("#profile-college").value = savedProfile.college || "";
+        document.querySelector("#profile-branch").value = savedProfile.branch || "";
+    }
+
+    // Close the edit form
+    editProfileForm.classList.remove("show");
+
+});
+
 // ReuseHub - Profile My Listings Shortcut
 
 const profileMyListings = document.querySelector("#profile-my-listings");
@@ -862,6 +956,14 @@ darkModeToggle.addEventListener("click", () => {
     } else {
         darkModeToggle.textContent = "🌙 Enable Dark Mode";
     }
+});
+
+// ReuseHub - Cancel Settings
+
+const cancelSettingsButton = document.querySelector("#cancel-settings-btn");
+
+cancelSettingsButton.addEventListener("click", () => {
+    settingsPanel.classList.remove("show");
 });
 // ReuseHub - Load Saved Listings
 
@@ -1082,11 +1184,25 @@ function updateFeaturedResource() {
 
     if (!featured) return;
 
+    // Dynamic Icon based on Category
+    const categoryIcons = {
+        books: "📖",
+        stationery: "✏️",
+        lab: "🥼",
+        electronics: "🔌"
+    };
+
+    const icon = categoryIcons[featured.category] || "📦";
+
+    featuredCard.querySelector(".resource-icon").textContent = icon;
+
     // Update Featured Resource display
     featuredCard.querySelector("h3").textContent = featured.name;
+
     featuredCard.querySelector(".price").textContent =
         "Price: ₹" + featured.price;
-    featuredCard.querySelector(".resource-details").children[1].textContent =
+
+    featuredCard.querySelector(".resource-details").children[2].textContent =
         "Condition: " + featured.condition;
 }
 
@@ -1099,17 +1215,53 @@ featuredCard.addEventListener("click", () => {
         localStorage.getItem("reusehub-listings") || "[]"
     );
 
-    const featured = listings[0];
+    // Use the first listing, or the default featured resource
+    const featured = listings[0] || {
+        name: "Engineering Mechanics",
+        price: 200,
+        condition: "Good",
+        category: "books",
+        availability: "available",
+        description: "No description provided.",
+        type: "exchange"
+    };
 
-    if (!featured) return;
+    // ReuseHub - Featured Laboratory Coat Details
+const featuredLabcoatCard = document.querySelector("#featured-labcoat-card");
+
+featuredLabcoatCard.addEventListener("click", () => {
+
+    const tempCard = document.createElement("div");
+    tempCard.className = "browse-card";
+
+    tempCard.dataset.category = "lab";
+    tempCard.dataset.availability = "available";
+    tempCard.dataset.description = "Laboratory coat in good condition.";
+
+    tempCard.innerHTML = `
+        <div class="browse-book-icon">🥼</div>
+        <h3></h3>
+        <p class="price"></p>
+        <p></p>
+        <p class="status"></p>
+    `;
+
+    tempCard.querySelector("h3").textContent = "Laboratory Coat";
+    tempCard.querySelector(".price").textContent = "Price: ₹150";
+    tempCard.querySelectorAll("p")[1].textContent = "Condition: Good";
+    tempCard.querySelector(".status").textContent = "Available for sale";
+
+    previousScreen = "home";
+    openResourceDetails(tempCard);
+});
 
     // Create a temporary Browse-style card
     const tempCard = document.createElement("div");
     tempCard.className = "browse-card";
 
-    tempCard.dataset.category = featured.category;
-    tempCard.dataset.availability = featured.availability;
-    tempCard.dataset.description = featured.description;
+    tempCard.dataset.category = featured.category || "books";
+    tempCard.dataset.availability = featured.availability || "available";
+    tempCard.dataset.description = featured.description || "No description provided.";
 
     tempCard.innerHTML = `
         <div class="browse-book-icon">📖</div>
@@ -1123,7 +1275,7 @@ featuredCard.addEventListener("click", () => {
     tempCard.querySelector(".price").textContent = "Price: ₹" + featured.price;
     tempCard.querySelectorAll("p")[1].textContent = "Condition: " + featured.condition;
     tempCard.querySelector(".status").textContent =
-        "Available for " + featured.type;
+        "Available for " + (featured.type || "exchange");
 
     // Open Resource Details
     previousScreen = "home";
@@ -1161,6 +1313,20 @@ notificationButton.addEventListener("click", () => {
         notificationPanel.style.display = "block";
         notificationDot.style.display = "none";
     }
+});
+
+// ReuseHub - Close Notifications on Outside Click
+
+document.addEventListener("click", (event) => {
+
+    if (
+        notificationPanel.style.display === "block" &&
+        !notificationPanel.contains(event.target) &&
+        !notificationButton.contains(event.target)
+    ) {
+        notificationPanel.style.display = "none";
+    }
+
 });
 
 // ReuseHub - Persistent Notifications
@@ -1242,3 +1408,19 @@ if ("serviceWorker" in navigator) {
             .catch(error => console.log("Service Worker registration failed:", error));
     });
 }
+
+// ReuseHub - Item Added Popup
+const itemAddedPopup = document.querySelector("#item-added-popup");
+const itemAddedOk = document.querySelector("#item-added-ok");
+
+itemAddedOk.addEventListener("click", () => {
+    itemAddedPopup.classList.remove("show");
+});
+
+// ReuseHub - Profile Updated Popup
+const profileUpdatedPopup = document.querySelector("#profile-updated-popup");
+const profileUpdatedOk = document.querySelector("#profile-updated-ok");
+
+profileUpdatedOk.addEventListener("click", () => {
+    profileUpdatedPopup.classList.remove("show");
+});

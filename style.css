@@ -1575,3 +1575,123 @@ body.dark-mode .availability-status.unavailable {
 .screen.active::-webkit-scrollbar {
     display: none;
 }
+
+/* Edit Profile Form Buttons */
+
+.profile-form-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.profile-form-buttons button {
+    flex: 1;
+}
+
+/* Settings Cancel Button */
+
+#cancel-settings-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #6F9FBE;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ReuseHub - Custom Toast Notification */
+#reusehub-toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: #315D7D;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    text-align: center;
+    max-width: 85%;
+}
+
+/* Toast Visible */
+#reusehub-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ReuseHub - Contact Seller Popup */
+.contact-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.contact-popup-overlay.show {
+    display: flex;
+}
+
+.contact-popup-card {
+    background-color: #B7D3E6;
+    color: #315D7D;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: popupAppear 0.25s ease;
+}
+
+.contact-popup-card h3 {
+    margin-top: 0;
+    color: #315D7D;
+}
+
+.contact-popup-card p {
+    font-size: 14px;
+    margin: 15px 0 20px;
+    line-height: 1.5;
+}
+
+.contact-popup-card button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6F9FBE;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@keyframes popupAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Spacing between Featured Resource cards */
+.featured .resource-card {
+    margin-bottom: 15px;
+}
