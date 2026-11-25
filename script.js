@@ -1402,10 +1402,31 @@ clearNotificationsButton.addEventListener("click", () => {
 });
 // ReuseHub - Register Service Worker
 if ("serviceWorker" in navigator) {
+
+    let refreshing = false;
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (refreshing) return;
+
+        refreshing = true;
+        window.location.reload();
+    });
+
     window.addEventListener("load", () => {
+
         navigator.serviceWorker.register("./service-worker.js")
-            .then(() => console.log("ReuseHub offline support is active!"))
-            .catch(error => console.log("Service Worker registration failed:", error));
+            .then(registration => {
+
+                registration.update();
+
+                console.log("ReuseHub offline support is active!");
+                console.log("Checking for app updates...");
+
+            })
+            .catch(error => {
+                console.log("Service Worker registration failed:", error);
+            });
+
     });
 }
 
